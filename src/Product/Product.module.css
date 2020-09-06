@@ -1,0 +1,8 @@
+.wrap {
+  border: solid #ccc 1px;
+  margin: 0 20px;
+}
+
+.image {
+  height: 300px;
+}

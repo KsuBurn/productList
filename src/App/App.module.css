@@ -1,8 +1,24 @@
-.searchBar {
-  display: flex;
-  justify-content: space-around;
+.wrap {
+  padding: 50px;
 }
 
-.buttons {
+.searchBar {
   display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.inputWrap {
+  display: flex;
+}
+
+.productListWrap {
+  margin: 0 auto 20px;
+}
+
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }

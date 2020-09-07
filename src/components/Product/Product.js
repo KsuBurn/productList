@@ -18,6 +18,7 @@ const Product = ({image, name, price, chooseProduct, displayType}) => {
             alt="phone"
             className={classnames({
               [style.image]: true,
+              [style.tileImage]: displayType === 'tile',
               [style.listImage]: displayType === 'list'
             })}
           />

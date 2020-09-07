@@ -9,22 +9,23 @@ const Product = ({image, name, price, chooseProduct, displayType}) => {
       className={style.wrap}
       onClick={() => chooseProduct(image, name, price)}
     >
-      <Card
-        hoverable
-        cover={
+      <Card hoverable>
+        <div className={classnames({
+          [style.carContentList]: displayType === 'list'
+        })}>
           <img
             src={image.replace('http', 'https')}
             alt="phone"
             className={classnames({
               [style.image]: true,
-              [style.tileImage]:displayType === 'tile',
               [style.listImage]: displayType === 'list'
             })}
           />
-        }
-      >
-        <h3 className={style.productName}>{name}</h3>
-        <h1 className={style.productPrice}>{price} ₽</h1>
+          <div>
+            <h3 className={style.productName}>{name}</h3>
+            <h1 className={style.productPrice}>{price} ₽</h1>
+          </div>
+        </div>
       </Card>
     </div>
   );

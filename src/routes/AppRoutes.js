@@ -3,8 +3,6 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import {Spin} from 'antd';
 
 const ProductView =React.lazy(() => import('../components/ProductView/ProductView'));
-const ProductList =React.lazy(() => import('../components/ProductList/ProductList'));
-
 
 const AppRoutes = () => {
   return (

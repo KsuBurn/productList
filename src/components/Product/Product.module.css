@@ -10,6 +10,11 @@
 
 .listImage {
   width: inherit;
+  margin-right: 15px;
+}
+
+.carContentList {
+  display: flex;
 }
 
 @media (max-width: 700px) {

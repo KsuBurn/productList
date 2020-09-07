@@ -50,7 +50,7 @@ const App = () => {
 
   const sortChange = async value => {
     const [sortField, sortDirection] = value.split('-');
-    const url = `https://www.lenvendo.ru/api/js-test-task/?sort_field=${sortField}&sort_direction=${sortDirection}`;
+    const url = `https://www.lenvendo.ru/api/js-test-task/?sort_field=${sortField}&sort_direction=${sortDirection}&page=1`;
     const productData = await getProductData(url, 'GET');
 
     setSortData({
@@ -59,6 +59,13 @@ const App = () => {
     });
 
     setProductList(productData.products);
+
+    setPages({
+      total_count: productData.total_count,
+      current_page: productData.current_page,
+      previous_page_url: productData.previous_page_url,
+      next_page_url: productData.next_page_url,
+    });
   };
 
   const inputSearchValue = (value) => {
@@ -212,6 +219,7 @@ const App = () => {
       }
       <div className={style.pagination}>
         <Pagination
+          current={pages.current_page}
           responsive={true}
           defaultCurrent={1}
           total={pages.total_count}

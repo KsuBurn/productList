@@ -1,5 +1,7 @@
 .wrap {
   padding: 50px;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
 .searchBar {
@@ -33,4 +35,25 @@
 
 .notFound {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    padding: 20px 10px 10px;
+  }
+
+  .searchBar {
+    flex-direction: column;
+  }
+
+  .searchForm {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .wrap {
+    width: 100%;
+    padding: 20px 0;
+  }
 }

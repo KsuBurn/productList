@@ -5,9 +5,41 @@
 .image {
   height: 300px;
   object-fit: contain;
-  margin: 7px 0;
+  margin: 7px 5px;
 }
 
 .listImage {
   width: inherit;
+}
+
+@media (max-width: 700px) {
+  .image {
+    height: 200px;
+  }
+
+  .productName {
+    font-size: 14px;
+  }
+
+  .productPrice {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .wrap {
+    margin: 10px;
+  }
+
+  .image {
+    height: 150px;
+  }
+
+  .productName {
+    font-size: 14px;
+  }
+
+  .productPrice {
+    font-size: 17px;
+  }
 }

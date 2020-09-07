@@ -150,7 +150,7 @@ const App = () => {
   return (
     <div className={style.wrap}>
       <div className={style.searchBar}>
-        <Space>
+        <Space className={style.searchForm}>
           <InputField
             inputSearchValue={inputSearchValue}
             inputValue={searchValue}
@@ -208,9 +208,11 @@ const App = () => {
       }
       <div className={style.pagination}>
         <Pagination
+          size={window.innerWidth <= 350 ? 'small' : 'default'}
           defaultCurrent={1}
           total={pages.total_count}
           onChange={(page) => changePage(page)}
+          showSizeChanger={false}
         />
       </div>
     </div>

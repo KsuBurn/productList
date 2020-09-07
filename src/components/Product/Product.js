@@ -23,8 +23,8 @@ const Product = ({image, name, price, chooseProduct, displayType}) => {
           />
         }
       >
-        <h3>{name}</h3>
-        <h1>{price} ₽</h1>
+        <h3 className={style.productName}>{name}</h3>
+        <h1 className={style.productPrice}>{price} ₽</h1>
       </Card>
     </div>
   );

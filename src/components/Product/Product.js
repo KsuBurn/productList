@@ -13,7 +13,7 @@ const Product = ({image, name, price, chooseProduct, displayType}) => {
         hoverable
         cover={
           <img
-            src={image}
+            src={image.replace('http', 'https')}
             alt="phone"
             className={classnames({
               [style.image]: true,

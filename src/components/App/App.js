@@ -99,7 +99,7 @@ const App = () => {
       fetchUrl = pages.previous_page_url;
     }
 
-    if (currentPage - pages.current_page > 1 || currentPage - pages.current_page < -1) {
+    if (currentPage - pages.current_page > 1 || currentPage - pages.current_page < -1 || currentPage - pages.current_page === 0) {
       fetchUrl = `https://www.lenvendo.ru/api/js-test-task/?page=${currentPage}`;
     }
 

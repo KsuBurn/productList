@@ -7,6 +7,7 @@ import SortSelection from '../SortSelection/SortSelection';
 import {Modal, Pagination, Spin} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import CustomButton from '../CustomButton/CustomButton';
+import {getProductData} from '../../utils/useProductList';
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,66 +27,66 @@ const App = () => {
     name: '',
     price: ''
   });
+  const [sortData, setSortData] = useState({
+    sortField: 'name',
+    sortDirection: 'asc'
+  });
 
-  const getProductList = () => {
-    fetch(`https://www.lenvendo.ru/api/js-test-task/`, {method: 'GET'})
-      .then(response => response.json())
-      .then(result => {
-        setProductList(result.products);
-        result.products.length !== 0 ? setIsLoaded(true) : setIsLoaded(false);
-        setPages({
-          total_count: result.total_count,
-          current_page: result.current_page,
-          previous_page_url: result.previous_page_url,
-          next_page_url: result.next_page_url,
-        })
-      })
-      .catch(err => console.log(err));
+  const getProductList = async () => {
+    const productData = await getProductData(`https://www.lenvendo.ru/api/js-test-task/`, 'GET');
+
+    setProductList(productData.products);
+    setPages({
+      total_count: productData.total_count,
+      current_page: productData.current_page,
+      previous_page_url: productData.previous_page_url,
+      next_page_url: productData.next_page_url,
+    });
+    productData.products.length !== 0 ? setIsLoaded(true) : setIsLoaded(false);
   };
 
-  const sortChange = value => {
+  const sortChange = async value => {
     const [sortField, sortDirection] = value.split('-');
+    const url = `https://www.lenvendo.ru/api/js-test-task/?sort_field=${sortField}&sort_direction=${sortDirection}`;
+    const productData = await getProductData(url, 'GET');
 
-    fetch(`https://www.lenvendo.ru/api/js-test-task/?sort_field=${sortField}&sort_direction=${sortDirection}`, {method: 'GET'})
-      .then(response => response.json())
-      .then(result => setProductList(result.products))
-      .catch(err => console.log(err));
+    setSortData({
+      sortField: sortField,
+      sortDirection: sortDirection
+    });
+
+    setProductList(productData.products);
   };
 
   const inputSearchValue = (value) => {
     setSearchValue(value);
   };
 
-  const searchProduct = () => {
+  const searchProduct = async () => {
     let fetchUrl;
     if (searchValue) {
       fetchUrl = `https://www.lenvendo.ru/api/js-test-task/?search=${searchValue}`;
     } else {
       fetchUrl = `https://www.lenvendo.ru/api/js-test-task/`;
     }
+    const productData = await getProductData(fetchUrl, 'GET');
+    if (productData.products == undefined) {
+      setProductList([]);
+      setNotFound(true);
+    } else {
+      setProductList(productData.products);
+      setNotFound(false)
+    }
 
-    fetch(fetchUrl, {method: 'GET'})
-      .then(response => response.json())
-      .then(result => {
-        if (result.products == undefined) {
-          setProductList([]);
-          setNotFound(true);
-        } else {
-          setProductList(result.products);
-        }
-        setPages({
-          total_count: result.total_count,
-          current_page: result.current_page,
-          previous_page_url: result.previous_page_url,
-          next_page_url: result.next_page_url,
-        });
-      })
-      .catch(err => {
-        setNotFound(true);
-      });
+    setPages({
+      total_count: productData.total_count,
+      current_page: productData.current_page,
+      previous_page_url: productData.previous_page_url,
+      next_page_url: productData.next_page_url,
+    });
   };
 
-  const changePage = (currentPage) => {
+  const changePage = async (currentPage) => {
     let fetchUrl;
     if (currentPage - pages.current_page === 1) {
       fetchUrl = pages.next_page_url;
@@ -103,19 +104,18 @@ const App = () => {
       fetchUrl = `${fetchUrl}&search=${searchValue}`;
     }
 
-    fetch(fetchUrl)
-      .then(response => response.json())
-      .then(result => {
-        setProductList(result.products);
-        setPages({
-          total_count: result.total_count,
-          current_page: result.current_page,
-          previous_page_url: result.previous_page_url,
-          next_page_url: result.next_page_url,
-        });
-      })
+    const productData = await getProductData(`${fetchUrl}&sort_field=${sortData.sortField}&sort_direction=${sortData.sortDirection}`, 'GET');
+
+    setProductList(productData.products);
+    setPages({
+      total_count: productData.total_count,
+      current_page: productData.current_page,
+      previous_page_url: productData.previous_page_url,
+      next_page_url: productData.next_page_url,
+    });
+
     setTimeout(() =>{
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
     }, 100)
   };
 
@@ -165,7 +165,7 @@ const App = () => {
         isLoaded ? (
           <div className={style.productListWrap}>
             {notFound ? (
-              <p> Ничего не найдено</p>
+              <h2 className={style.notFound}>По Вашему запросу ничего не найдено</h2>
             ) : (
               <div>
                 <ProductList

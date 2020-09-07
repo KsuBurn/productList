@@ -162,7 +162,7 @@ const ProductView = ({match}) => {
           showSizeChanger={false}
           hideOnSinglePage={true}
           itemRender={(page, type, originalElement) => {
-            return <Link to={`/product_list/page=${page}`}>{originalElement}</Link>
+            return <Link to={`/productList/products/page=${page}`}>{originalElement}</Link>
           }}
         />
       )

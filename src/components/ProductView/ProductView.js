@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getProductData} from '../../utils/getProductData';
 import style from './ProductView.module.css';
-import {Modal, Pagination, Space, Spin} from 'antd';
+import {Modal, Pagination, Space} from 'antd';
 import InputField from '../InputField/InputField';
 import CustomButton from '../CustomButton/CustomButton';
 import {SearchOutlined} from '@ant-design/icons';
@@ -10,6 +10,7 @@ import RadioButtons from '../RadioButtons/RadioButtons';
 import displayTypeButtons from '../../mapping/displayTypeButtons.json';
 import ProductList from '../ProductList/ProductList';
 import {Link} from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
 
 const ProductView = ({match}) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -231,11 +232,7 @@ const ProductView = ({match}) => {
             )}
           </div>
         ) : (
-          <div className={style.preloader}>
-            <Spin
-              size='large'
-            />
-          </div>
+          <Preloader size='large'/>
         )
       }
       <div className={style.pagination}>

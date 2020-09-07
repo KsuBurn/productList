@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './Product.module.css';
 import {Card} from 'antd';
+import classnames from 'classnames';
 
-const Product = ({image, name, price, chooseProduct}) => {
+const Product = ({image, name, price, chooseProduct, displayType}) => {
   return (
     <div
       className={style.wrap}
@@ -10,7 +11,17 @@ const Product = ({image, name, price, chooseProduct}) => {
     >
       <Card
         hoverable
-        cover={<img src={image} alt="phone" className={style.image}/>}
+        cover={
+          <img
+            src={image}
+            alt="phone"
+            className={classnames({
+              [style.image]: true,
+              [style.tileImage]:displayType === 'tile',
+              [style.listImage]: displayType === 'list'
+            })}
+          />
+        }
       >
         <h3>{name}</h3>
         <h1>{price} ₽</h1>

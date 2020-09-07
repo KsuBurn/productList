@@ -1,5 +1,11 @@
-.wrap {
+.tileWrap {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+
+.listWrap {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 }

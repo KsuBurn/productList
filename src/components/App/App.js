@@ -4,10 +4,12 @@ import ProductList from '../ProductList/ProductList';
 import InputField from '../InputField/InputField';
 import style from './App.module.css';
 import SortSelection from '../SortSelection/SortSelection';
-import {Modal, Pagination, Spin} from 'antd';
+import {Modal, Pagination, Space, Spin} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import CustomButton from '../CustomButton/CustomButton';
 import {getProductData} from '../../utils/useProductList';
+import RadioButtons from '../RadioButtons/RadioButtons';
+import displayTypeButtons from '../../mapping/displayTypeButtons.json';
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,6 +33,7 @@ const App = () => {
     sortField: 'name',
     sortDirection: 'asc'
   });
+  const [displayType, setDisplayType] = useState('tile');
 
   const getProductList = async () => {
     const productData = await getProductData(`https://www.lenvendo.ru/api/js-test-task/`, 'GET');
@@ -136,6 +139,10 @@ const App = () => {
     setVisibleModal(false);
   };
 
+  const chooseDisplayType = (event) => {
+    setDisplayType(event.target.value)
+  };
+
   useEffect(() => {
     getProductList();
   }, []);
@@ -143,7 +150,7 @@ const App = () => {
   return (
     <div className={style.wrap}>
       <div className={style.searchBar}>
-        <div className={style.inputWrap}>
+        <Space>
           <InputField
             inputSearchValue={inputSearchValue}
             inputValue={searchValue}
@@ -154,12 +161,17 @@ const App = () => {
             onClick={searchProduct}
             icon={<SearchOutlined/>}
           />
-        </div>
-        <div>
+        </Space>
+        <Space>
           <SortSelection
             sortChange={sortChange}
           />
-        </div>
+          <RadioButtons
+            buttonsArr={displayTypeButtons}
+            activeButton={displayType}
+            onChange={chooseDisplayType}
+          />
+        </Space>
       </div>
       {
         isLoaded ? (
@@ -171,6 +183,7 @@ const App = () => {
                 <ProductList
                   productList={productList}
                   chooseProduct={chooseProduct}
+                  displayType={displayType}
                 />
                 <Modal
                   visible={visibleModal}

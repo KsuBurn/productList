@@ -7,8 +7,8 @@ You can see the result [here](https://product-list-testapp.herokuapp.com/ ).<br>
 In this application I use the following technologies: 
 
 
-Reach (+hooks)
-Rest API
+Reach (+hooks),
+Rest API,
 AntD library
 
 ## How to download a project:

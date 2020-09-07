@@ -8,12 +8,12 @@ export const getProductData = async (url, method) => {
     products: [],
   };
 
-  const request = await fetch(url, {method: method});
-  const response = await request.json();
-
-  if (response != undefined) {
-    productData = response;
-  }
+  await fetch(url, {method: method})
+    .then(response => response.json())
+    .then(result =>  productData = result)
+    .catch(err => {
+      alert(`Произошла ошибка при загрузке страницы: ${err}`)
+    })
 
   return productData;
 };

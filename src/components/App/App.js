@@ -191,7 +191,11 @@ const App = () => {
                   onCancel={handleCancel}
                   okText='Add to cart'
                 >
-                  <img src={showedProduct.image} alt="phone" className={style.image}/>
+                  <img
+                    src={showedProduct.image.replace('http', 'https')}
+                    alt="phone"
+                    className={style.image}
+                  />
                   <h3>{showedProduct.name}</h3>
                   <h1>{showedProduct.price} ₽</h1>
                 </Modal>
@@ -208,11 +212,12 @@ const App = () => {
       }
       <div className={style.pagination}>
         <Pagination
-          size={window.innerWidth <= 350 ? 'small' : 'default'}
+          responsive={true}
           defaultCurrent={1}
           total={pages.total_count}
           onChange={(page) => changePage(page)}
           showSizeChanger={false}
+          hideOnSinglePage={true}
         />
       </div>
     </div>

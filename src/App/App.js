@@ -4,7 +4,7 @@ import ProductList from '../ProductList/ProductList';
 import InputField from '../InputField/InputField';
 import style from './App.module.css';
 import SortSelection from '../SortSelection/SortSelection';
-import {Pagination, Spin} from 'antd';
+import {Modal, Pagination, Spin} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import CustomButton from '../CustomButton/CustomButton';
 
@@ -20,6 +20,12 @@ const App = () => {
     pages_count: ''
   });
   const [notFound, setNotFound] = useState(false);
+  const [visibleModal, setVisibleModal] = useState(false);
+  const [showedProduct, setShowedProduct] = useState({
+    image: '',
+    name: '',
+    price: ''
+  });
 
   const getProductList = () => {
     fetch(`https://www.lenvendo.ru/api/js-test-task/`, {method: 'GET'})
@@ -53,9 +59,9 @@ const App = () => {
   const searchProduct = () => {
     let fetchUrl;
     if (searchValue) {
-      fetchUrl = `https://www.lenvendo.ru/api/js-test-task/?search=${searchValue}`
+      fetchUrl = `https://www.lenvendo.ru/api/js-test-task/?search=${searchValue}`;
     } else {
-      fetchUrl = `https://www.lenvendo.ru/api/js-test-task/`
+      fetchUrl = `https://www.lenvendo.ru/api/js-test-task/`;
     }
 
     fetch(fetchUrl, {method: 'GET'})
@@ -72,7 +78,7 @@ const App = () => {
           current_page: result.current_page,
           previous_page_url: result.previous_page_url,
           next_page_url: result.next_page_url,
-        })
+        });
       })
       .catch(err => {
         setNotFound(true);
@@ -108,12 +114,32 @@ const App = () => {
           next_page_url: result.next_page_url,
         });
       })
+    setTimeout(() =>{
+      window.scrollTo(0,0)
+    }, 100)
+  };
+
+  const chooseProduct = (image, name, price) => {
+    setShowedProduct({
+      name: name,
+      price: price,
+      image: image
+    });
+    setVisibleModal(true)
+  };
+
+  const handleOk = () => {
+    setVisibleModal(false);
+  };
+
+  const handleCancel = () => {
+    setVisibleModal(false);
   };
 
   useEffect(() => {
     getProductList();
   }, []);
-  console.log(pages.total_count)
+
   return (
     <div className={style.wrap}>
       <div className={style.searchBar}>
@@ -141,9 +167,22 @@ const App = () => {
             {notFound ? (
               <p> Ничего не найдено</p>
             ) : (
-              <ProductList
-                productList={productList}
-              />
+              <div>
+                <ProductList
+                  productList={productList}
+                  chooseProduct={chooseProduct}
+                />
+                <Modal
+                  visible={visibleModal}
+                  onOk={handleOk}
+                  onCancel={handleCancel}
+                  okText='Add to cart'
+                >
+                  <img src={showedProduct.image} alt="phone" className={style.image}/>
+                  <h3>{showedProduct.name}</h3>
+                  <h1>{showedProduct.price} ₽</h1>
+                </Modal>
+              </div>
             )}
           </div>
         ) : (
@@ -154,11 +193,13 @@ const App = () => {
           </div>
         )
       }
-      <Pagination
-        defaultCurrent={1}
-        total={pages.total_count}
-        onChange={(page) => changePage(page)}
-      />
+      <div className={style.pagination}>
+        <Pagination
+          defaultCurrent={1}
+          total={pages.total_count}
+          onChange={(page) => changePage(page)}
+        />
+      </div>
     </div>
   );
 };

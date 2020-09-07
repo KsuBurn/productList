@@ -2,7 +2,7 @@ import React from 'react';
 import Product from '../Product/Product';
 import style from './ProductList.module.css';
 
-const ProductList = ({productList}) => {
+const ProductList = ({productList, chooseProduct}) => {
   return (
     <div className={style.wrap}>
       {productList.map((item, index) => {
@@ -12,6 +12,7 @@ const ProductList = ({productList}) => {
               image={item.image}
               name={item.name}
               price={item.price}
+              chooseProduct={chooseProduct}
             />
           </div>
         )

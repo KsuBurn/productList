@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+  padding: 0 20px;
 }
 
 .inputWrap {
@@ -21,4 +22,15 @@
   justify-content: center;
   align-items: center;
   height: 70vh;
+}
+
+.image {
+  height: 300px;
+  object-fit: contain;
+  margin: 7px auto;
+  width: 100%;
+}
+
+.pagination {
+  text-align: center;
 }

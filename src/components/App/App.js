@@ -7,7 +7,7 @@ import SortSelection from '../SortSelection/SortSelection';
 import {Modal, Pagination, Space, Spin} from 'antd';
 import {SearchOutlined} from '@ant-design/icons';
 import CustomButton from '../CustomButton/CustomButton';
-import {getProductData} from '../../utils/useProductList';
+import {getProductData} from '../../utils/getProductData';
 import RadioButtons from '../RadioButtons/RadioButtons';
 import displayTypeButtons from '../../mapping/displayTypeButtons.json';
 

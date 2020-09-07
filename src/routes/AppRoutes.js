@@ -8,9 +8,9 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<Spin size='large'/>}>
       <Switch>
-        <Route exact path='/products' component={ProductView}/>
-        <Route exact path='/products/page=:current_page' component={ProductView}/>
-        <Redirect from="/" to="/products" component={ProductView}/>
+        <Route exact path='/products' component={ProductView} />
+        <Route exact path='/products/page=:current_page' component={ProductView} />
+        <Redirect from="/" to="/products" component={ProductView} />
       </Switch>
     </Suspense>
   );

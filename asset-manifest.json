@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.js": "/productList/static/js/main.b39ef7d1.chunk.js",
-    "main.js.map": "/productList/static/js/main.b39ef7d1.chunk.js.map",
-    "runtime-main.js": "/productList/static/js/runtime-main.e565e7d5.js",
-    "runtime-main.js.map": "/productList/static/js/runtime-main.e565e7d5.js.map",
+    "main.js": "/productList/static/js/main.e28d54a1.chunk.js",
+    "main.js.map": "/productList/static/js/main.e28d54a1.chunk.js.map",
+    "runtime-main.js": "/productList/static/js/runtime-main.2368d874.js",
+    "runtime-main.js.map": "/productList/static/js/runtime-main.2368d874.js.map",
     "static/js/2.ed64586b.chunk.js": "/productList/static/js/2.ed64586b.chunk.js",
     "static/js/2.ed64586b.chunk.js.map": "/productList/static/js/2.ed64586b.chunk.js.map",
     "static/css/3.d4e7eff5.chunk.css": "/productList/static/css/3.d4e7eff5.chunk.css",
     "static/js/3.d67d12bc.chunk.js": "/productList/static/js/3.d67d12bc.chunk.js",
     "static/js/3.d67d12bc.chunk.js.map": "/productList/static/js/3.d67d12bc.chunk.js.map",
-    "static/css/4.fd50ee6c.chunk.css": "/productList/static/css/4.fd50ee6c.chunk.css",
-    "static/js/4.523e62cd.chunk.js": "/productList/static/js/4.523e62cd.chunk.js",
-    "static/js/4.523e62cd.chunk.js.map": "/productList/static/js/4.523e62cd.chunk.js.map",
+    "static/css/4.c36725b9.chunk.css": "/productList/static/css/4.c36725b9.chunk.css",
+    "static/js/4.a524bb2b.chunk.js": "/productList/static/js/4.a524bb2b.chunk.js",
+    "static/js/4.a524bb2b.chunk.js.map": "/productList/static/js/4.a524bb2b.chunk.js.map",
     "index.html": "/productList/index.html",
-    "precache-manifest.369a80006143a70670c038ca3c0b5bb3.js": "/productList/precache-manifest.369a80006143a70670c038ca3c0b5bb3.js",
+    "precache-manifest.d9bf9cc668fde9ae7b98a071eea91456.js": "/productList/precache-manifest.d9bf9cc668fde9ae7b98a071eea91456.js",
     "service-worker.js": "/productList/service-worker.js",
     "static/css/3.d4e7eff5.chunk.css.map": "/productList/static/css/3.d4e7eff5.chunk.css.map",
-    "static/css/4.fd50ee6c.chunk.css.map": "/productList/static/css/4.fd50ee6c.chunk.css.map",
+    "static/css/4.c36725b9.chunk.css.map": "/productList/static/css/4.c36725b9.chunk.css.map",
     "static/js/3.d67d12bc.chunk.js.LICENSE.txt": "/productList/static/js/3.d67d12bc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e565e7d5.js",
+    "static/js/runtime-main.2368d874.js",
     "static/css/3.d4e7eff5.chunk.css",
     "static/js/3.d67d12bc.chunk.js",
-    "static/js/main.b39ef7d1.chunk.js"
+    "static/js/main.e28d54a1.chunk.js"
   ]
 }

@@ -92,11 +92,11 @@ const App = () => {
   const changePage = async (currentPage) => {
     let fetchUrl;
     if (currentPage - pages.current_page === 1) {
-      fetchUrl = pages.next_page_url;
+      fetchUrl = pages.next_page_url.replace('http', 'https');
     }
 
     if (currentPage - pages.current_page === -1) {
-      fetchUrl = pages.previous_page_url;
+      fetchUrl = pages.previous_page_url.replace('http', 'https');
     }
 
     if (currentPage - pages.current_page > 1 || currentPage - pages.current_page < -1 || currentPage - pages.current_page === 0) {
